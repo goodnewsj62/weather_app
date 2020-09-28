@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title%}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static './styles_sheet.css'%}">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.14.0-web/css/all.css'%}"> {% block style %} {% endblock %}
+
+
+</head>
+
+<body>
+    <div class="container">
+        <input type="checkbox" id="check">
+
+        <header>
+            <div class="logo">
+                <div><img src="{%static './images/weather_icon.png'%}" alt="logo icon"></div>
+                <h3 class="header-h1"> 9ja weather</h3>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li>
+                        <a href="#">
+                                Home
+                            </a>
+                    </li>
+                    <li>
+
+                        <a href="#">
+                                About
+                            </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                Contact
+                            </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        {% if messages%} {% for message in messages%}
+        <div style="color: white;" class="message"> {{message}}</div>
+        {% endfor %} {% endif %}
+        <div class="content">
+            {%block content%} {% endblock %}
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

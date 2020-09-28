@@ -1,0 +1,75 @@
+{% extends 'base.html'%} {% load static %}
+
+<title>
+    {% block title%} 9ja weather {% endblock %}
+</title>
+
+{%block style%}
+<link rel="stylesheet" href="{% static './home_page.css' %}"> {% endblock%} {% block content%}
+<div class="main">
+    <div class="wrapper">
+        <form method="get" action=".">
+            <input type="search" placeholder="location" name="search_box" id="search">
+            <!-- <button type="submit" class="btn">
+                search
+            </button> -->
+        </form>
+
+        <div class="searched">
+            {% if object != None %}
+            <div class="information">
+                <div class="name">
+                    {{object.name}}
+                </div>
+                <div class="info-wrapper">
+                    <div class="img">
+                        <img src="{{object.icon}}" alt="icon">
+                    </div>
+                    <div class="info2">
+                        <p><strong>{{object.weather_date|date:"l"}}</strong></p>
+                        <p style=" font-size: 0.9rem ;" class="des">{{object.description}}</p>
+                        <p><strong>{{object.temperature}} &deg;c</strong></p>
+                        <p><strong>hum: {{object.humidity}}</strong></p>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="alert">
+                <h3>Sorry no such city found!</h3>
+            </div>
+            {% endif %}
+
+        </div>
+        <div class="box">
+            {%for sample in samples%}
+            <div class="box-wrap">
+
+                <div class="name">
+                    <strong>{{sample.name}}</strong>
+                </div>
+                <div class="info-wrap">
+                    <div class="icon">
+                        <img src="{{sample.icon}}" alt="icon">
+                    </div>
+                    <div class="info">
+                        <p><strong>{{sample.weather_date|date:"l"}}</strong></p>
+                        <p style="text-align:center; font-size: 0.9rem ;" class="des">{{sample.description}}</p>
+                        <br>
+                        <p><strong>{{sample.temperature}} &deg;c</strong></p>
+                        <p><strong>hum: {{sample.humidity}}</strong></p>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+        <div class="update">
+            {% if update != None%}
+            <div>
+                {{update|safe}}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
