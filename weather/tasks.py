@@ -26,7 +26,6 @@ def weather_scrapper(*args,**kwargs):
 
     key = os.environ.get( 'OPEN_WEATHER_API')
     url = 'https://api.openweathermap.org/data/2.5/find?lat=9&lon=8&cnt=50&exclude=daily,minutely&&appid=' + key
-
     site = req.urlopen(url).read()
     data = json.loads(site)
 
