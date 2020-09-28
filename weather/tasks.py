@@ -8,7 +8,7 @@ from urllib import request as req
 import json
 import os
 
-os.environ.setdefault('OPEN_WEATHER_API','271d4ee1cb1a9a92902b3bd52a0431c8')
+
 
 
 
@@ -24,7 +24,7 @@ app = Celery()
 def weather_scrapper(*args,**kwargs):
 
 
-    key = '271d4ee1cb1a9a92902b3bd52a0431c8'
+    key = os.environ.get( 'OPEN_WEATHER_API')
     url = 'https://api.openweathermap.org/data/2.5/find?lat=9&lon=8&cnt=50&exclude=daily,minutely&&appid=' + key
 
     site = req.urlopen(url).read()
